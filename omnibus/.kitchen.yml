@@ -25,16 +25,52 @@ provisioner:
 platforms:
   - name: centos-6.7
     run_list: yum-epel::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: centos-7.2
     run_list: yum-epel::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: debian-7.9
     run_list: apt::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: debian-8.2
     run_list: apt::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: ubuntu-12.04
     run_list: apt::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: ubuntu-14.04
     run_list: apt::default
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   # The following (private) boxes are shared via Atlas and are only
   # available to users working for Chef. Sorry, it's about software licensing.
   #
@@ -54,15 +90,39 @@ platforms:
   - name: macosx-10.9
     driver:
       box: chef/macosx-10.9 # private
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: macosx-10.10
     driver:
       box: chef/macosx-10.10 # private
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   - name: macosx-10.11
     driver:
       box: chef/macosx-10.11 # private
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    vagrant
+        build_user_password: vagrant
+        install_dir: /opt/chefdk
   # By adding an `i386` to the name the Omnibus cookbook's `load-omnibus-toolchain.bat`
   # will load the 32-bit version of the MinGW toolchain.
   - name: windows-2012r2-standard-i386
+    attributes:
+      omnibus:
+        build_user:          vagrant
+        build_user_group:    Administrators
+        build_user_password: vagrant
+        install_dir: /opscode/chefdk
     driver:
       box: chef/windows-server-2012r2-standard # private
       synced_folders:
@@ -72,16 +132,7 @@ platforms:
       # at `C:\vagrant\code\chef-dk`
       - ['../..', '/vagrant/code']
 
-attribute_defaults: &attribute_defaults
-  build_user:          vagrant
-  build_user_group:    vagrant
-  build_user_password: vagrant
-
 suites:
   - name: chefdk
-    attributes:
-      omnibus:
-        <<: *attribute_defaults
-        install_dir: /opt/chefdk
     run_list:
       - omnibus::default

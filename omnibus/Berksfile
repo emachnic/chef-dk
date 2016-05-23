@@ -1,9 +1,12 @@
 source 'https://supermarket.chef.io'
 
-cookbook 'omnibus'
+#cookbook 'omnibus'
 
 # Uncomment to use the latest version of the Omnibus cookbook from GitHub
 # cookbook 'omnibus', github: 'opscode-cookbooks/omnibus'
+cookbook 'omnibus', github: 'opscode-cookbooks/omnibus', branch: 'ksubrama/msys2'
+cookbook 'build-essential', github: 'opscode-cookbooks/build-essential', branch: 'ksubrama/msys2'
+cookbook 'mingw', github: 'opscode-cookbooks/mingw', branch: 'msys2'
 
 group :integration do
   cookbook 'apt',      '~> 2.3'
